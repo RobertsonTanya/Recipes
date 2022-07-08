@@ -5,20 +5,18 @@ const RecipeSchema = new mongoose.Schema({
     name: {
         type: String,
     },
-    // image: {
-    //     type: String,
-    //     required: [true, 'Image is required']
-    // },
+    image: {
+        type: String,
+    },
     ingredients: [
         { 
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'Ingredient' 
         }
     ],
-    /*instructions: {
+    instructions: {
         type: String,
-        required: [true, 'Instructions are required']
-    }*/
+    }
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);

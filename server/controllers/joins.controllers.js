@@ -23,9 +23,13 @@ module.exports.creation = async (req, res) => {
         mainField = 'recipes'
         SubModel = Ingredient
     }
+    
+    let {name, [subField]: subby, ...rest} = req.body;
+    let newMainObj = await new MainModel({name, [subField]:[]})//add later
 
-
-    let newMainObj = await new MainModel({name: req.body.name, ingredients: []})//add later
+    Object.entries(rest).forEach(([key, value]) => {
+        newMainObj[key] = value;
+    })
 
     let subArray = req.body[subField];
 
