@@ -10,6 +10,7 @@ const IngredientsSchema = new mongoose.Schema({
     },
     name: {
         type: String,
+        required: [true, 'Ingredients must be named.']
     },
     recipes: [
         {

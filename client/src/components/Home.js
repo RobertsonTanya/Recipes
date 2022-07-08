@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import Header from './Header';
 import ChickenPotPie from '../images/chickenPotPie.png';
@@ -6,6 +7,22 @@ import ChickenPotPie from '../images/chickenPotPie.png';
 import styles from '../styles/home.module.css';
 
 const Home = () => {
+    const [ recipes, setRecipes ] = useState({});
+    const [ featured, setFeatured ] = useState({});
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/recipes`)
+            .then(res => {
+                console.log(res.data);
+                setRecipes(res.data);
+            })
+            .catch(err => { console.log(err)})
+        for(let i=0; i<recipes.length; i++){
+            if(recipes[i].featured === true){
+                setFeatured(recipes[i]);
+            }
+        }
+    }, [])
 
     return (
         <div>
@@ -36,16 +53,24 @@ const Home = () => {
                     <p>solutions</p>
                 </div>
             </div>
-            <div className={`container ${styles.container} ${styles.feature}`}>
-                <div className={styles.featureLeft}>
-                    <h2>Featured Recipe:</h2>
-                    <h3>Ingredients:</h3>
+            {featured ?
+                <div className={`container ${styles.container} ${styles.feature}`}>
+                    <div className={styles.featureLeft}>
+                        <h2>Featured Recipe:</h2>
+                        <h3>Ingredients:</h3>
+                        {/* <ul>
+                            {featured.ingredients.map((ingredient, i) => {
+                                return <li></li>
+                            })}
+                        </ul> */}
+                    </div>
+                    <div className={styles.featureRight}>
+                        <h2>Chicken Pot Pie</h2>
+                        <h3>Instructions:</h3>
+                        <p>{featured.instructions}</p>
+                    </div>
                 </div>
-                <div className={styles.featureRight}>
-                    <h2>Chicken Pot Pie</h2>
-                    <h3>Instructions:</h3>
-                </div>
-            </div>
+            : null }
         </div>
     )
 }

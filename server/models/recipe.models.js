@@ -4,6 +4,7 @@ const IngredientsSchema = require('./ingredients.models');
 const RecipeSchema = new mongoose.Schema({
     name: {
         type: String,
+        required: [true, 'Recipes must have a name.']
     },
     image: {
         type: String,
@@ -16,6 +17,12 @@ const RecipeSchema = new mongoose.Schema({
     ],
     instructions: {
         type: String,
+        required: [true, 'Recipes must have instructions.']
+    },
+    featured: {
+        type: Boolean,
+        unique: true,
+        default: false
     }
 });
 
