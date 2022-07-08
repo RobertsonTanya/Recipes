@@ -33,7 +33,11 @@ h2 {
 .feature {
     background-image: url('../images/GreyBackground.png');
     background-position: top center;
-    background-size: cover;
+    background-size: 100% 100%;
+}
+
+.feature .container {
+    align-items: flex-start;
 }
 
 .feature h2,
@@ -81,6 +85,29 @@ h2 {
 }
 
 @media only screen and (max-width: 768px){
+    .featureRight {
+        margin-left: 20px;
+    }
+
+    .cooking {
+        background-position: top left;
+        background-size: 100%;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .feature .container {
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+    .featureLeft {
+        width: 100%;
+    }
+    .featureRight {
+        margin-left: 0;
+        width: 100%;
+    }
+    
     .cooking {
         background-position: top left;
         background-size: 100%;

@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
 import Header from './Header';
 import ChickenPotPie from '../images/chickenPotPie.png';
 
@@ -8,9 +5,6 @@ import styles from '../styles/home.module.css';
 
 const Home = (props) => {
     const { featured } = props;
-
-
-
 
     return (
         <div>
