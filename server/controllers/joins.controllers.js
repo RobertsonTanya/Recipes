@@ -24,44 +24,53 @@ module.exports.creation = async (req, res) => {
         SubModel = Ingredient
     }
     
-    let {name, [subField]: subby, ...rest} = req.body;
-    let newMainObj = await new MainModel({name, [subField]:[]})//add later
+    try {
+        
+        let {name, [subField]: subby, ...rest} = req.body;
+        let newMainObj = await new MainModel({name, [subField]:[]})
 
-    Object.entries(rest).forEach(([key, value]) => {
-        newMainObj[key] = value;
-    })
+        Object.entries(rest).forEach(([key, value]) => {
+            newMainObj[key] = value;
+        })
 
-    let subArray = req.body[subField];
+        let subArray = req.body[subField];
 
-    let updatedMain;
+        let updatedMain;
 
-    newMainObj.save();
+        newMainObj.save();
 
-    if(subArray){
-        const subFieldLoop = async () => {
-            for(let sub of subArray){
-                
-                let subExists = await SubModel.findOne({name: sub.name});
-                
-                if(subExists){
-                    updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], subExists);
+        if(subArray){
+            const subFieldLoop = async () => {
+                for(let sub of subArray){
+                    
+                    let subExists = await SubModel.findOne({name: sub.name});
+                    
+                    if(subExists){
+                        updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], subExists);
 
-                    await updateSubDocById(SubModel, subExists, [mainField], updatedMain);
+                        await updateSubDocById(SubModel, subExists, [mainField], updatedMain);
 
-                } else {
-                    let newSub = await SubModel.create(sub);
+                    } else {
+                        let newSub = await SubModel.create(sub);
 
-                    updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], newSub);
+                        updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], newSub);
 
-                    await updateSubDocById(SubModel, newSub, [mainField], updatedMain);
+                        await updateSubDocById(SubModel, newSub, [mainField], updatedMain);
+                    }
                 }
             }
-        }
-        await subFieldLoop();
+            await subFieldLoop();
 
-        res.json(updatedMain);
+            res.json(updatedMain);
+        }
+        else {
+            res.json(newMainObj);
+        }    
     }
-    
+    catch(err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
 }
 
 
