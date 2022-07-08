@@ -1,3 +1,42 @@
 .background {
-    
+    background-image: url('../images/HomeBackground.png');
+    background-position: bottom center;
+    background-size: cover;
+    color: #fff;
+    padding-top: 100px;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.left {
+    min-width: 35%;
+    padding-right: 25px;
+}
+
+.right {
+    width: 65%;
+}
+
+.right img {
+    max-width: 100%;
+}
+
+h2 {
+    color: #9425ac;
+}
+
+.feature {
+    background-image: url('../images/GreyBackground.png');
+    background-position: top center;
+    background-size: cover;
+}
+
+.feature h2,
+.feature h3 {
+    color: #232323;
 }

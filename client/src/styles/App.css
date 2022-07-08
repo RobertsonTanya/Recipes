@@ -1,0 +1,13 @@
+.container {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.btn-primary {
+    background-color: #2761b0;
+    border: #2761b0 1px solid;
+    border-radius: 25px;
+    color: #fff;
+    padding: 5px 20px;
+    text-transform: uppercase;
+}
