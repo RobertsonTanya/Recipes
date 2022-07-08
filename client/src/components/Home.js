@@ -64,7 +64,7 @@ const Home = (props) => {
                     <p>solutions</p>
                 </div>
             </div>
-            {featured ?
+            {featured && featured.ingredients ?
                 <div className={`container ${styles.container} ${styles.feature}`}>
                     <div className={styles.featureLeft}>
                         <h2>Featured Recipe:</h2>
@@ -85,6 +85,17 @@ const Home = (props) => {
                     </div>
                 </div>
             : null }
+            <div className={styles.cooking}>
+                <div className={`container ${styles.container}`}>
+                    <div className={styles.left}>
+                        <h3>What are you waiting for?</h3>
+                        <h2>Let's get cooking!</h2>
+                    </div>
+                    <div className={styles.right}>
+                        <button className='btn-primary'>Get Started</button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
