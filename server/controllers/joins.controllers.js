@@ -11,119 +11,71 @@ const updateSubDocById = async (model, doc, field, subDoc) => {
 }
 
 module.exports.creation = async (req, res) => {
-    let newRecipeObj = await new Recipe({name: req.body.name, ingredients: []})
 
-    let ingredientsArray = req.body.ingredients;
-
-    let updatedRecipe;
-
-    newRecipeObj.save();
-
-    if(ingredientsArray){
-        const ingredientsLoop = async () => {
-            for(let i = 0; i < ingredientsArray.length; i++){
-                let ingredientExists = await Ingredient.findOne({name: ingredientsArray[i].name});
-                
-                if(ingredientExists){
-                    updatedRecipe = await updateSubDocById(Recipe, newRecipeObj, "ingredients", ingredientExists);
-
-                    await updateSubDocById(Ingredient, ingredientExists, "recipes", updatedRecipe);
-
-                } else {
-                    let newIngredient = await Ingredient.create(ingredientsArray[i]);
-
-                    updatedRecipe = await updateSubDocById(Recipe, newRecipeObj, "ingredients", newIngredient);
-
-                    await updateSubDocById(Ingredient, newIngredient, "recipes", updatedRecipe);
-                }
-            }
-        }
-        await ingredientsLoop();
-
-        res.json(updatedRecipe);
+    if(req.params.create === "ingredients"){
+        MainModel = Ingredient
+        subField = 'recipes'
+        mainField = 'ingredients'
+        SubModel = Recipe
+    } else {
+        MainModel = Recipe
+        subField = 'ingredients'
+        mainField = 'recipes'
+        SubModel = Ingredient
     }
     
+    try {
+        
+        let {name, [subField]: subby, ...rest} = req.body;
+        let newMainObj = await new MainModel({name, [subField]:[]})
+
+        Object.entries(rest).forEach(([key, value]) => {
+            newMainObj[key] = value;
+        })
+
+        let subArray = req.body[subField];
+
+        let updatedMain;
+
+        newMainObj.save();
+
+        if(subArray){
+            const subFieldLoop = async () => {
+                for(let sub of subArray){
+                    
+                    let subExists = await SubModel.findOne({name: sub.name});
+                    
+                    if(subExists){
+                        updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], subExists);
+
+                        await updateSubDocById(SubModel, subExists, [mainField], updatedMain);
+
+                    } else {
+                        let newSub = await SubModel.create(sub);
+
+                        updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], newSub);
+
+                        await updateSubDocById(SubModel, newSub, [mainField], updatedMain);
+                    }
+                }
+            }
+            await subFieldLoop();
+
+            res.json(updatedMain);
+        }
+        else {
+            res.json(newMainObj);
+        }    
+    }
+    catch(err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// const updateSubDocById = async (model, field, subDoc, doc) => {
-//     let updated = await mongoose.model.findOneAndUpdate(
-//         {_id: doc._id},
-//         {$addToSet: {[field]: subDoc._id}},
-//         { new: true, useFindAndModify: true}
-//     )
-//     return updated;
-// }
-
-// module.exports.creation = async (req, res) => {
-
-//         if(req.params.create === "ingredients"){
-//             MainModel = Ingredient
-//             subField = "recipes"
-//             mainField = "ingredients"
-//             SubModel = Recipe
-//         } else {
-//             MainModel = Recipe
-//             subField = "ingredients"
-//             mainField = "recipes"
-//             SubModel = Ingredient
-//         }
-        
-//         let { name, [subField]: subby, ...rest} = req.body;
-        
-
-//         // create a new Recipe immediately
-//         let newMainObj = await new MainModel({name, [subField]: []});
-//         // let additionalFieldArray = [];
-
-//         Object.entries(rest).forEach(([key, value]) => {
-//             // additionalFieldArray.push(({ [key]: value }));
-//             newMainObj[key] = value;
-//         })
-
-
-//         // let ingredientArray = req.body.ingredients;// we will need to loop thru this
-//         let subArray = req.body[subField];
-//         let updatedMain;
-//         newMainObj.save();//saving variable to the db
-
-//         if(subArray){
-//             const subFieldLoop = async () => {
-//                 for(let sub of subArray){
-//                     let subExists = await SubModel.findOne({name: sub.name});
-//                     if(subExists){
-//                         //update recipe
-//                         updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], subExists);
-//                         //update ingredients
-//                         await updateSubDocById(SubModel, subExists, [mainField], updatedMain);
-                        
-//                     } else {
-//                         let newSub = await SubModel.create(sub);
-//                         //update recipe
-//                         updatedMain = await updateSubDocById(MainModel, newMainObj, [subField], newSub);
-//                         //update ingredients
-//                         await updateSubDocById(SubModel, newSub, [mainField], updatedMain);
-//                     }
-//                 }
-//             }
-//             await subFieldLoop();
-
-//             res.json(updatedMain);
-//         }
-// }
 
 // Route for retrieving a Recipe by id and populating it's Ingredient.
 module.exports.findOneRecipe = (req, res) => {
