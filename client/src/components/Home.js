@@ -6,11 +6,10 @@ import ChickenPotPie from '../images/chickenPotPie.png';
 
 import styles from '../styles/home.module.css';
 
-const Home = () => {
+const Home = (props) => {
+    const { featured, setFeatured } = props;
+
     const [ recipes, setRecipes ] = useState({});
-    const [ featured, setFeatured ] = useState({});
-
-
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes`)
@@ -35,11 +34,10 @@ const Home = () => {
     }, []);
 
 
-    
 
     return (
         <div>
-            <Header />
+            <Header featured={featured} />
             <div className={styles.background}>
                 <div className={`container ${styles.container}`}>
                     <div className={styles.left}>
