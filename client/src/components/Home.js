@@ -78,6 +78,7 @@ const Home = () => {
                             )
                         }) : null}
                         </ul>
+                        <img className={styles.featureImage} src={featured.image} alt={featured.name} />
                     </div>
                     <div className={styles.featureRight}>
                         <h2>{featured.name}</h2>

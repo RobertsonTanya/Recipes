@@ -40,3 +40,7 @@ h2 {
 .feature h3 {
     color: #232323;
 }
+
+.featureImage {
+    max-width: 75px;
+}
