@@ -10,6 +10,14 @@
     padding: 10px;
 }
 
+.marketing h2 {
+    margin-bottom: 0;
+}
+
+.marketing p {
+    margin-top: 0;
+}
+
 .feature .container {
     display: block;
 }

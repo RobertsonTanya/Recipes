@@ -23,7 +23,7 @@ const Home = (props) => {
                     </div>
                 </div>
             </div>
-            <div className={`container ${styles.container}`}>
+            <div className={`container ${styles.container} ${styles.marketing}`}>
                 <div>
                     <h2>{recipes.length} recipes</h2>
                     <p>Free trial</p>
