@@ -1,0 +1,11 @@
+.background {
+    background-image: url('../images/HomeBackground.png');
+    background-position: bottom center;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
