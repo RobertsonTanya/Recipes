@@ -1,9 +1,6 @@
 .background {
     background-image: url('../images/HomeBackground.png');
     background-position: bottom center;
-    background-size: cover;
-    color: #fff;
-    padding-top: 100px;
 }
 
 .container {

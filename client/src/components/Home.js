@@ -11,7 +11,7 @@ const Home = (props) => {
     return (
         <div>
             <Header featured={featured} />
-            <div className={styles.background}>
+            <div className={`background ${styles.background}`}>
                 <div className={`container ${styles.container}`}>
                     <div className={styles.left}>
                         <h1>ByTanyaR's <span>Recipes</span></h1>

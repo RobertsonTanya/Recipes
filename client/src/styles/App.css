@@ -1,3 +1,9 @@
+.background {
+    background-size: cover;
+    color: #fff;
+    padding-top: 100px;
+}
+
 .container {
     margin: 0 auto;
     max-width: 900px;
