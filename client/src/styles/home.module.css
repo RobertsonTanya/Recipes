@@ -10,12 +10,23 @@
     padding: 10px;
 }
 
-.left {
+.feature .container {
+    display: block;
+}
+
+.titles,
+.body {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+}
+
+.featureLeft {
     min-width: 35%;
     padding-right: 25px;
 }
 
-.right {
+.featureRight {
     width: 65%;
 }
 
@@ -33,8 +44,8 @@ h2 {
     background-size: 100% 100%;
 }
 
-.feature .container {
-    align-items: flex-start;
+.feature h2 a {
+    text-decoration: none;
 }
 
 .feature h2,
@@ -93,7 +104,8 @@ h2 {
 }
 
 @media only screen and (max-width: 425px){
-    .feature .container {
+    .feature .titles,
+    .feature .body {
         flex-wrap: wrap;
         padding: 20px;
     }
