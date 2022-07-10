@@ -11,3 +11,8 @@
     padding: 5px 20px;
     text-transform: uppercase;
 }
+
+.btn-primary a {
+    color: #fff;
+    text-decoration: none;
+}

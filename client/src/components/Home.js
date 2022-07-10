@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Header from './Header';
 import ChickenPotPie from '../images/chickenPotPie.png';
 
@@ -14,7 +16,7 @@ const Home = (props) => {
                     <div className={styles.left}>
                         <h1>ByTanyaR's <span>Recipes</span></h1>
                         <p>A collection of mouthwatering, yet fast and easy, recipes for Tanya to cook.</p>
-                        <button className='btn-primary'>Get Started</button>
+                        <button className='btn-primary'><Link to='/recipes'>Get Started</Link></button>
                     </div>
                     <div className={styles.right}>
                         <img src={ChickenPotPie} alt="Chicken Pot Pie" />
@@ -65,7 +67,7 @@ const Home = (props) => {
                         <h2>Let's get cooking!</h2>
                     </div>
                     <div className={styles.right}>
-                        <button className='btn-primary'>Get Started</button>
+                        <button className='btn-primary'><Link to='/recipes'>Get Started</Link></button>
                     </div>
                 </div>
             </div>
