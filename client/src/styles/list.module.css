@@ -3,5 +3,18 @@
     background-position: bottom center;
     background-size: cover;
     color: #fff;
+    min-height: 100vh;
     padding-top: 100px;
+}
+
+.listings li {
+    border-bottom: 1px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.listings li a {
+    color: #fff;
+    text-decoration: none;
 }

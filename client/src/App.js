@@ -6,6 +6,7 @@ import Home from './components/Home';
 import CreateNew from './components/CreateNew';
 import Details from './components/Details';
 import List from './components/List';
+import Edit from './components/Edit';
 
 import './styles/App.css';
 
@@ -25,7 +26,7 @@ function App() {
                       console.log('more', res.data[i]._id);
                       axios.get(`http://localhost:8000/api/recipes/${res.data[i]._id}`)
                           .then(resp => {
-                              console.log('inside', resp.data);
+                              console.log(resp.data);
                               setFeatured(resp.data);
                           })
                           .catch(err => { console.log(err)})
@@ -39,14 +40,17 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home featured={featured}  />} default/>
-          <Route path="/recipes" element={<List featured={featured} recipes={recipes}  />} />
-          <Route path="/new-recipe" element={<CreateNew featured={featured} />} />
-          <Route path="/recipes/details/:id" element={<Details featured={featured} recipes={recipes}  />} />
-        </Routes>
-      </BrowserRouter>
+      {recipes ?
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home featured={featured}  />} default/>
+            <Route path="/recipes" element={<List featured={featured} recipes={recipes}  />} />
+            <Route path="/recipes/edit/:id" element={<Edit featured={featured} recipes={recipes}  />} />
+            <Route path="/new-recipe" element={<CreateNew featured={featured} />} />
+            <Route path="/recipes/details/:id" element={<Details featured={featured} recipes={recipes}  />} />
+          </Routes>
+        </BrowserRouter>
+      : null}
     </div>
   );
 }
