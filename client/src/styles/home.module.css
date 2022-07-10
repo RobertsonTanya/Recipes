@@ -1,0 +1,115 @@
+.background {
+    background-image: url('../images/HomeBackground.png');
+    background-position: bottom center;
+    background-size: cover;
+    color: #fff;
+    padding-top: 100px;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.left {
+    min-width: 35%;
+    padding-right: 25px;
+}
+
+.right {
+    width: 65%;
+}
+
+.right img {
+    max-width: 100%;
+}
+
+h2 {
+    color: #9425ac;
+}
+
+.feature {
+    background-image: url('../images/GreyBackground.png');
+    background-position: top center;
+    background-size: 100% 100%;
+}
+
+.feature .container {
+    align-items: flex-start;
+}
+
+.feature h2,
+.feature h3 {
+    color: #232323;
+}
+
+.featureImage {
+    max-width: 185px;
+}
+
+.cooking {
+    align-items: center;
+    background-image: url('../images/AmorphousShape.png');
+    background-position: center left;
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
+    display: flex;
+    justify-content: space-between;
+    min-height: 350px;
+}
+
+.cooking .container {
+    width: 100%;
+}
+
+.cooking h2,
+.cooking h3 {
+    color: #fff;
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+
+.cooking .left {
+    width: 70%;
+}
+
+.cooking .right {
+    width: 30%;
+}
+
+.cooking .right button {
+    display: block;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px){
+    .featureRight {
+        margin-left: 20px;
+    }
+
+    .cooking {
+        background-position: top left;
+        background-size: 100%;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .feature .container {
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+    .featureLeft {
+        width: 100%;
+    }
+    .featureRight {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .cooking {
+        background-position: top left;
+        background-size: 100%;
+    }
+}
