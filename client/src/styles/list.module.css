@@ -1,13 +1,15 @@
 .background {
     background-image: url('../images/ListBackground.jpg');
     background-position: bottom center;
-    background-size: cover;
-    color: #fff;
     min-height: 100vh;
-    padding-top: 100px;
+}
+
+.listings {
+    padding-inline-start: 0;
 }
 
 .listings li {
+    align-items: center;
     border-bottom: 1px solid #fff;
     display: flex;
     justify-content: space-between;
@@ -16,5 +18,14 @@
 
 .listings li a {
     color: #fff;
+    font-size: 1.5em;
     text-decoration: none;
+}
+
+.listings button {
+    max-height: 32px;
+}
+
+.listings button a {
+    font-size: 13.333px;
 }

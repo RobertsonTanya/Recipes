@@ -6,12 +6,12 @@ import ChickenPotPie from '../images/chickenPotPie.png';
 import styles from '../styles/home.module.css';
 
 const Home = (props) => {
-    const { featured } = props;
+    const { featured, recipes } = props;
 
     return (
         <div>
             <Header featured={featured} />
-            <div className={styles.background}>
+            <div className={`background ${styles.background}`}>
                 <div className={`container ${styles.container}`}>
                     <div className={styles.left}>
                         <h1>ByTanyaR's <span>Recipes</span></h1>
@@ -23,9 +23,9 @@ const Home = (props) => {
                     </div>
                 </div>
             </div>
-            <div className={`container ${styles.container}`}>
+            <div className={`container ${styles.container} ${styles.marketing}`}>
                 <div>
-                    <h2>48 recipes</h2>
+                    <h2>{recipes.length} recipes</h2>
                     <p>Free trial</p>
                 </div>
                 <div>
@@ -40,22 +40,30 @@ const Home = (props) => {
             {featured && featured.ingredients ?
                 <div className={styles.feature}>
                     <div className={`container ${styles.container}`}>
-                        <div className={styles.featureLeft}>
-                            <h2>Featured Recipe:</h2>
-                            <h3>Ingredients:</h3>
-                            <ul>
-                            {featured.ingredients ? featured.ingredients.map((ingredient, index) => {
-                                return (
-                                    <li key={index}>{ingredient.quantity} {ingredient.measurement} {ingredient.name}</li>
-                                )
-                            }) : null}
-                            </ul>
-                            <img className={styles.featureImage} src={featured.image} alt={featured.name} />
+                        <div className={styles.titles}>
+                            <div className={styles.featureLeft}>
+                                <h2>Featured Recipe:</h2>
+                            </div>
+                            <div className={styles.featureRight}>
+                                <h2><Link to={`/recipes/details/${featured._id}`}>{featured.name}</Link></h2>
+                            </div>
                         </div>
-                        <div className={styles.featureRight}>
-                            <h2>{featured.name}</h2>
-                            <h3>Instructions:</h3>
-                            <p>{featured.instructions}</p>
+                        <div className={styles.body}>
+                            <div className={styles.featureLeft}>
+                                <h3>Ingredients:</h3>
+                                <ul>
+                                {featured.ingredients ? featured.ingredients.map((ingredient, index) => {
+                                    return (
+                                        <li key={index}>{ingredient.quantity} {ingredient.measurement} {ingredient.name}</li>
+                                    )
+                                }) : null}
+                                </ul>
+                                <img className={styles.featureImage} src={featured.image} alt={featured.name} />
+                            </div>
+                            <div className={styles.featureRight}>
+                                <h3>Instructions:</h3>
+                                <p>{featured.instructions}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,53 @@
+.background {
+    background-image: url('../images/HomeBackground.png');
+    background-position: bottom center;
+    min-height: 85vh;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    color: #fff;
+    width: 100%;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+}
+.detailsLeft {
+    min-width: 35%;
+    padding-right: 25px;
+}
+
+.detailsRight {
+    width: 65%;
+}
+
+.detailsImage {
+    max-width: 185px;
+}
+
+@media only screen and (max-width: 425px){
+    .background {
+        min-height: 150vh;
+    }
+    h1 {
+        margin-bottom: 0;
+    }
+    .details {
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+    .detailsLeft {
+        width: 100%;
+    }
+    .detailsRight {
+        margin-left: 0;
+        width: 100%;
+    }
+}
