@@ -32,9 +32,11 @@
 .featureLeft {
     min-width: 35%;
     padding-right: 25px;
+    white-space: pre-line;
 }
 
 .featureRight {
+    white-space: pre-line;
     width: 65%;
 }
 

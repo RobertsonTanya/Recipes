@@ -21,10 +21,12 @@ h1 {
 }
 .detailsLeft {
     min-width: 35%;
-    padding-right: 25px;
+    padding-right: 50px;
+    white-space: pre-line;
 }
 
 .detailsRight {
+    white-space: pre-line;
     width: 65%;
 }
 
