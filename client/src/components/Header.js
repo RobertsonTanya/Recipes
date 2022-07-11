@@ -11,7 +11,7 @@ const Header = (props) => {
         <div className={styles.header}>
             <div className={styles.left}>
                 <div className={styles.logo}>
-                    <img src={Logo} alt="logo" />
+                    <Link to='/'><img src={Logo} alt="logo" /></Link>
                 </div>
                 <nav className={styles.nav}>
                     <Link to={`/recipes/details/${featured._id}`}>Feature</Link>

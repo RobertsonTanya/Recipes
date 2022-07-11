@@ -46,7 +46,7 @@ function App() {
             <Route path="/" element={<Home featured={featured} recipes={recipes}  />} default/>
             <Route path="/recipes" element={<List featured={featured} recipes={recipes}  />} />
             <Route path="/recipes/edit/:id" element={<Edit featured={featured} recipes={recipes}  />} />
-            <Route path="/new-recipe" element={<CreateNew featured={featured} />} />
+            <Route path="/new-recipe" element={<CreateNew featured={featured} recipes={recipes} setRecipes={setRecipes} />} />
             <Route path="/recipes/details/:id" element={<Details featured={featured} recipes={recipes}  />} />
           </Routes>
         </BrowserRouter>

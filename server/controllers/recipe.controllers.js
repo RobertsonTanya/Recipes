@@ -28,3 +28,22 @@ module.exports.deleteRecipe = (req, res) => {
             res.status(400).json(err)
         })
 }
+
+module.exports.createNewRecipe = (req, res) => {
+    Recipe.create(req.body)
+        .then((newRecipe) => {
+            res.json(newRecipe)
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+}
+module.exports.findOneRecipe = (req, res) => {
+    Recipe.findOne({_id: req.params.id})
+    .then((foundRecipe) => {
+        res.json(foundRecipe)
+    })
+    .catch(err => {
+        res.status(400).json(err)
+    })
+}

@@ -22,18 +22,12 @@ const Details = (props) => {
                                     <div className={styles.details}>
                                         <div className={styles.detailsLeft}>
                                             <h3>Ingredients:</h3>
-                                            <ul>
-                                            {featured.ingredients ? featured.ingredients.map((ingredient, index) => {
-                                                return (
-                                                    <li key={index}>{ingredient.quantity} {ingredient.measurement} {ingredient.name}</li>
-                                                )
-                                            }) : null}
-                                            </ul>
-                                            <img className={styles.detailsImage} src={featured.image} alt={featured.name} />
+                                            <p>{recipe.ingredients}</p>
+                                            <img className={styles.detailsImage} src={recipe.image} alt={featured.name} />
                                         </div>
                                         <div className={styles.detailsRight}>
                                             <h3>Instructions:</h3>
-                                            <p>{featured.instructions}</p>
+                                            <p>{recipe.instructions}</p>
                                         </div>
                                     </div>
                                 </div>

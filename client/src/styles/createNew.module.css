@@ -1,6 +1,6 @@
 .background {
-    background-image: url('../images/HomeBackground.png');
-    background-position: bottom center;
+    background-image: url('../images/ListBackground.jpg');
+    background-position: top center;
 }
 
 .form.container {
@@ -13,7 +13,33 @@ label {
     display: block;
 }
 
+.featuredLabel {
+    display: inline-block;
+    margin-left: 5px;
+}
+
 input {
     height: 32px;
     width: 100%;
+}
+
+.featuredInput {
+    height: auto;
+    width: auto;
+}
+
+textarea {
+    height: 175px;
+    width: 100%;
+}
+
+.featured {
+    align-items: center;
+    display: flex;
+}
+
+.lastRow {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }

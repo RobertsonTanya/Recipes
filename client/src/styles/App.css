@@ -19,7 +19,17 @@
     text-transform: uppercase;
 }
 
-.btn-primary a {
+.btn-primary a,
+.btn-delete a {
     color: #fff;
     text-decoration: none;
+}
+
+.btn-delete {
+    background-color: #b02727;
+    border: #b02727 1px solid;
+    border-radius: 25px;
+    color: #fff;
+    padding: 5px 20px;
+    text-transform: uppercase;
 }

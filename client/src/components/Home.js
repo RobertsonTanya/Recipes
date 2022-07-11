@@ -51,13 +51,7 @@ const Home = (props) => {
                         <div className={styles.body}>
                             <div className={styles.featureLeft}>
                                 <h3>Ingredients:</h3>
-                                <ul>
-                                {featured.ingredients ? featured.ingredients.map((ingredient, index) => {
-                                    return (
-                                        <li key={index}>{ingredient.quantity} {ingredient.measurement} {ingredient.name}</li>
-                                    )
-                                }) : null}
-                                </ul>
+                                <p>{featured.ingredients}</p>
                                 <img className={styles.featureImage} src={featured.image} alt={featured.name} />
                             </div>
                             <div className={styles.featureRight}>
