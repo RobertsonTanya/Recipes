@@ -5,7 +5,7 @@ import Logo from '../images/Logo.png';
 import styles from '../styles/header.module.css';
 
 const Header = (props) => {
-    const { featured } = props;
+    const { featuredRecipe } = props;
 
     return (
         <div className={styles.header}>
@@ -14,8 +14,11 @@ const Header = (props) => {
                     <Link to='/'><img src={Logo} alt="logo" /></Link>
                 </div>
                 <nav className={styles.nav}>
-                    <Link to={`/recipes/details/${featured._id}`}>Feature</Link>
+                    {featuredRecipe ?
+                        <Link to={`/recipes/details/${featuredRecipe._id}`}>Feature</Link>
+                    : null}
                     <Link to='/new-recipe'>Add A Recipe</Link>
+                    <Link to='/recipes'>All Recipes</Link>
                 </nav>
             </div>
             <div className={styles.login}>

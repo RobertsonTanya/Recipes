@@ -8,24 +8,18 @@ const RecipeSchema = new mongoose.Schema({
     },
     image: {
         type: String,
+        required: [true, 'Recipes must have an image.']
     },
     ingredients: {
         type: String,
         required: [true, 'Recipes must have ingredients.']
     },
-    // ingredients: [
-    //     { 
-    //         type: mongoose.Schema.Types.ObjectId, 
-    //         ref: 'Ingredient' 
-    //     }
-    // ],
     instructions: {
         type: String,
         required: [true, 'Recipes must have instructions.']
     },
     featured: {
-        type: Boolean,
-        default: false
+        type: Boolean
     }
 });
 

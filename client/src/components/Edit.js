@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 
 const Edit = (props) => {
-    const { featured } = props;
+    const { featuredRecipe } = props;
     
     return (
         <div>
-            <Header featured={featured} />
+            <Header featuredRecipe={featuredRecipe} />
             Edit Recipe
         </div>
     )

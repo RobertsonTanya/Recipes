@@ -5,13 +5,13 @@ import Header from "./Header";
 import styles from '../styles/details.module.css';
 
 const Details = (props) => {
-    const { featured, recipes } = props;
+    const { featuredRecipe, recipes } = props;
 
     const { id } = useParams();
 
     return (
         <div>
-            <Header featured={featured} />
+            <Header featuredRecipe={featuredRecipe} />
             <div className={`background ${styles.background}`}>
                 <div className={`container ${styles.container}`}>
                     {recipes ? recipes.map((recipe, index) => {
@@ -23,7 +23,7 @@ const Details = (props) => {
                                         <div className={styles.detailsLeft}>
                                             <h3>Ingredients:</h3>
                                             <p>{recipe.ingredients}</p>
-                                            <img className={styles.detailsImage} src={recipe.image} alt={featured.name} />
+                                            <img className={styles.detailsImage} src={recipe.image} alt={featuredRecipe.name} />
                                         </div>
                                         <div className={styles.detailsRight}>
                                             <h3>Instructions:</h3>
