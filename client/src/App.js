@@ -13,7 +13,7 @@ import './styles/App.css';
 
 function App() {
   const [ featured, setFeatured ] = useState({});
-  const [ recipes, setRecipes ] = useState({});
+  const [ recipes, setRecipes ] = useState([{}]);
 
   useEffect(() => {
       axios.get(`http://localhost:8000/api/recipes`)

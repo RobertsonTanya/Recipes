@@ -17,7 +17,8 @@ const List = (props) => {
                         {recipes ? recipes.map((recipe, index) => {
                             return (
                                 <li key={index}>
-                                    <Link to={`/recipes/${recipe._id}`}>{recipe.name}</Link>
+                                    <Link to={`/recipes/details/${recipe._id}`}>{recipe.name}</Link>
+                                    {recipe.featured ? <span>Featured</span> : null}
                                     <button className='btn-primary'><Link to={`/recipes/edit/${recipe._id}`}>Edit</Link></button>
                                 </li>
                             )

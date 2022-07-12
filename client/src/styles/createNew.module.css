@@ -43,3 +43,9 @@ textarea {
     display: flex;
     justify-content: space-between;
 }
+
+.image {
+    display: block;
+    margin: 20px auto;
+    max-width: 185px;
+}

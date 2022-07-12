@@ -37,7 +37,7 @@ const Home = (props) => {
                     <p>solutions</p>
                 </div>
             </div>
-            {featuredRecipe && featuredRecipe.ingredients ?
+            {featuredRecipe ?
                 <div className={styles.feature}>
                     <div className={`container ${styles.container}`}>
                         <div className={styles.titles}>

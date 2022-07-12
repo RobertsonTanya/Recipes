@@ -20,13 +20,13 @@ const CreateNew = (props) => {
     const createNewRecipe = (e) => {
         e.preventDefault();
 
+        setErrors({});
         axios.post('http://localhost:8000/api/recipes', recipeParams)
             .then(res => {
                 console.log(res.data);
                 setRecipes([...recipes, res.data]);
             })
-            .catch(err => { 
-                console.log('error log', err.response);
+            .catch(err => {
                 console.log('error log', err.response.data.errors);
                 setErrors(err.response.data.errors);
             })
@@ -66,7 +66,6 @@ const CreateNew = (props) => {
                         <p className="error">{errors.image.message}</p>
                     : null}
                     <div className={styles.lastRow}>
-                        <button className="btn-delete">Delete</button>
                         <p className={styles.featured}>
                             <input className={styles.featuredInput} type="checkbox" id="featured" defaultChecked={false} value={featured} onChange={e => {setFeatured(e.target.checked);}} />
                             <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
@@ -76,6 +75,9 @@ const CreateNew = (props) => {
                         </p>
                         <button type="submit" className="btn-primary">Submit</button>
                     </div>
+                    {image ?
+                        <img className={styles.image} src={image} alt={name} />
+                    : null }
                 </form>
             </div>
         </div>

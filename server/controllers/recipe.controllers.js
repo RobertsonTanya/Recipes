@@ -2,7 +2,7 @@ const Recipe = require('../models/recipe.models');
 
 
 module.exports.getAllRecipes = (req, res) => {
-    Recipe.find()
+    Recipe.find().sort({name: 1})
     .then((Recipes) => {
         res.json(Recipes);
     })
