@@ -7,7 +7,7 @@ import Header from "./Header";
 import styles from '../styles/createNew.module.css';
 
 const Edit = (props) => {
-    const { featuredRecipe } = props;
+    const { featuredRecipe, recipes, setRecipes } = props;
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -50,6 +50,17 @@ const Edit = (props) => {
             })
     }
 
+    const deleteRecipe = (recipeId) => {
+        axios.delete(`http://localhost:8000/api/recipes/${recipeId}`)
+            .then(res => {
+                console.log(res);
+                setRecipes(recipes.filter(recipe => recipe._id != recipeId));
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <div>
             <Header featuredRecipe={featuredRecipe} />
@@ -84,7 +95,7 @@ const Edit = (props) => {
                         <p className="error">{errors.image.message}</p>
                     : null}
                     <div className={styles.lastRow}>
-                        <button className="btn-delete">Delete</button>
+                        <button className="btn-delete" onClick={()=>deleteRecipe(recipe._id)}>Delete</button>
                         <p className={styles.featured}>
                             <input className={styles.featuredInput} type="checkbox" id="featured"  checked={featured} onChange={e => {setFeatured(e.target.checked);}} />
                             <label className={styles.featuredLabel} htmlFor="featured">Featured</label>

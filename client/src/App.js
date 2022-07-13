@@ -45,7 +45,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home featuredRecipe={featured} recipes={recipes}  />} default/>
             <Route path="/recipes" element={<List featuredRecipe={featured} recipes={recipes}  />} />
-            <Route path="/recipes/edit/:id" element={<Edit featuredRecipe={featured} recipes={recipes}  />} />
+            <Route path="/recipes/edit/:id" element={<Edit featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes}  />} />
             <Route path="/new-recipe" element={<CreateNew featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} />} />
             <Route path="/recipes/details/:id" element={<Details featuredRecipe={featured} recipes={recipes}  />} />
           </Routes>
