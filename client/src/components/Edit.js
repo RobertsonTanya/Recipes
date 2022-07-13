@@ -39,10 +39,10 @@ const Edit = (props) => {
         e.preventDefault();
 
         setErrors({});
-        axios.put('http://localhost:8000/api/recipes', recipeParams)
+        axios.put(`http://localhost:8000/api/recipes/${id}`, recipeParams)
             .then(res => {
                 console.log(res.data);
-                navigate(`/recipes/details/${id}`);
+                navigate(`/recipes`);
             })
             .catch(err => {
                 console.log('error log', err.response.data.errors);

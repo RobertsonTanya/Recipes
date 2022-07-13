@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import Header from "./Header";
@@ -7,6 +8,7 @@ import styles from '../styles/createNew.module.css';
 
 const CreateNew = (props) => {
     const { featuredRecipe, recipes, setRecipes } = props;
+    const navigate = useNavigate();
 
     const [ name, setName ]  = useState('');
     const [ ingredients, setIngredients ] = useState('');
@@ -25,6 +27,7 @@ const CreateNew = (props) => {
             .then(res => {
                 console.log(res.data);
                 setRecipes([...recipes, res.data]);
+                navigate('/recipes');
             })
             .catch(err => {
                 console.log('error log', err.response.data.errors);

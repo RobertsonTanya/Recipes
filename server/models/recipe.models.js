@@ -20,7 +20,7 @@ const RecipeSchema = new mongoose.Schema({
     },
     featured: {
         type: Boolean
-    }
+    },
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);

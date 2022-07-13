@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Header from "./Header";
 
 import styles from '../styles/details.module.css';
+import { useEffect } from "react";
 
 const Details = (props) => {
     const { featuredRecipe, recipes } = props;
