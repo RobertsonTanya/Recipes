@@ -1,28 +1,86 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 import Header from "./Header";
 
 import styles from '../styles/createNew.module.css';
 
 const CreateNew = (props) => {
-    const { featured } = props;
+    const { featuredRecipe, recipes, setRecipes } = props;
+    const navigate = useNavigate();
 
-    const { recipeName, setRecipeName } = useState('');
-    const { recipeInstructions, setRecipeInstructions } = useState('');
+    const [ name, setName ]  = useState('');
+    const [ ingredients, setIngredients ] = useState('');
+    const [ instructions, setInstructions ] = useState('');
+    const [ image, setImage ] = useState('');
+    const [ featured, setFeatured ] = useState(false);
+    const [ errors, setErrors ] = useState({});
+    const recipeParams = { name, image, ingredients, instructions, featured };
     
+    
+    const createNewRecipe = (e) => {
+        e.preventDefault();
+
+        setErrors({});
+        axios.post('http://localhost:8000/api/recipes', recipeParams)
+            .then(res => {
+                console.log(res.data);
+                setRecipes([...recipes, res.data]);
+                navigate('/recipes');
+            })
+            .catch(err => {
+                console.log('error log', err.response.data.errors);
+                setErrors(err.response.data.errors);
+            })
+    }
+
     return (
         <div>
-            <Header featured={featured} />
+            <Header featuredRecipe={featuredRecipe} />
             <div className={`background ${styles.background}`}>
-                <form className={`container ${styles.container}`}>
+                <form className={`container ${styles.container} ${styles.form}`} onSubmit={createNewRecipe}>
                     <p>
-                        <label htmlFor="recipeName">Recipe Name</label>
-                        <input type="text" id="recipeName" value={recipeName} onChange={e => {setRecipeName(e.target.value);}} />
+                        <label htmlFor="name">Recipe Name</label>
+                        <input type="text" id="name" value={name} onChange={e => {setName(e.target.value);}} />
                     </p>
+                    {errors && errors.name && errors.name.message ?
+                        <p className="error">{errors.name.message}</p>
+                    : null}
                     <p>
-                        <label htmlFor="recipeInstructions">Recipe Name</label>
-                        <input type="text" id="recipeInstructions" value={recipeInstructions} onChange={e => {setRecipeInstructions(e.target.value);}} />
+                        <label htmlFor="ingredients">Ingredients</label>
+                        <textarea id="ingredients" value={ingredients} onChange={e => {setIngredients(e.target.value);}} />
                     </p>
+                    {errors && errors.ingredients && errors.ingredients.message ?
+                        <p className="error">{errors.ingredients.message}</p>
+                    : null}
+                    <p>
+                        <label htmlFor="instructions">Instructions</label>
+                        <textarea id="instructions" value={instructions} onChange={e => {setInstructions(e.target.value);}} />
+                    </p>
+                    {errors && errors.instructions && errors.instructions.message ?
+                        <p className="error">{errors.instructions.message}</p>
+                    : null}
+                    <p>
+                        <label htmlFor="image">Image</label>
+                        <input type="text" id="image" value={image} onChange={e => {setImage(e.target.value);}} />
+                    </p>
+                    {errors && errors.image && errors.image.message ?
+                        <p className="error">{errors.image.message}</p>
+                    : null}
+                    <div className={styles.lastRow}>
+                        <p className={styles.featured}>
+                            <input className={styles.featuredInput} type="checkbox" id="featured" defaultChecked={false} value={featured} onChange={e => {setFeatured(e.target.checked);}} />
+                            <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
+                            {errors && errors.featured && errors.featured.message ?
+                                <p className="error">{errors.featured.message}</p>
+                            : null}
+                        </p>
+                        <button type="submit" className="btn-primary">Submit</button>
+                    </div>
+                    {image ?
+                        <img className={styles.image} src={image} alt={name} />
+                    : null }
                 </form>
             </div>
         </div>

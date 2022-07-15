@@ -9,8 +9,8 @@ app.use(express.urlencoded({extended: true}));
 
 require('./config/mongoose.config');
 const recipeRoutes = require('./routes/recipe.routes.js');
-const ingredientRoutes = require('./routes/ingredient.routes.js');
+// const ingredientRoutes = require('./routes/ingredient.routes.js');
 recipeRoutes(app);
-ingredientRoutes(app);
+// ingredientRoutes(app);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

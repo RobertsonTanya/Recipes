@@ -1,11 +1,51 @@
 .background {
-    background-image: url('../images/HomeBackground.png');
-    background-position: bottom center;
+    background-image: url('../images/ListBackground.jpg');
+    background-position: top center;
 }
 
-.container {
+.form.container {
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 10px;
+}
+
+label {
+    display: block;
+}
+
+.featuredLabel {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+input {
+    height: 32px;
+    width: 100%;
+}
+
+.featuredInput {
+    height: auto;
+    width: auto;
+}
+
+textarea {
+    height: 175px;
+    width: 100%;
+}
+
+.featured {
     align-items: center;
     display: flex;
-    justify-content: space-around;
-    padding: 10px;
+}
+
+.lastRow {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image {
+    display: block;
+    margin: 20px auto;
+    max-width: 185px;
 }

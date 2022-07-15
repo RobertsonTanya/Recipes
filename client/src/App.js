@@ -13,7 +13,7 @@ import './styles/App.css';
 
 function App() {
   const [ featured, setFeatured ] = useState({});
-  const [ recipes, setRecipes ] = useState({});
+  const [ recipes, setRecipes ] = useState([{}]);
 
   useEffect(() => {
       axios.get(`http://localhost:8000/api/recipes`)
@@ -43,11 +43,11 @@ function App() {
       {recipes ?
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home featured={featured} recipes={recipes}  />} default/>
-            <Route path="/recipes" element={<List featured={featured} recipes={recipes}  />} />
-            <Route path="/recipes/edit/:id" element={<Edit featured={featured} recipes={recipes}  />} />
-            <Route path="/new-recipe" element={<CreateNew featured={featured} />} />
-            <Route path="/recipes/details/:id" element={<Details featured={featured} recipes={recipes}  />} />
+            <Route path="/" element={<Home featuredRecipe={featured} recipes={recipes}  />} default/>
+            <Route path="/recipes" element={<List featuredRecipe={featured} recipes={recipes}  />} />
+            <Route path="/recipes/edit/:id" element={<Edit featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes}  />} />
+            <Route path="/new-recipe" element={<CreateNew featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} />} />
+            <Route path="/recipes/details/:id" element={<Details featuredRecipe={featured} recipes={recipes}  />} />
           </Routes>
         </BrowserRouter>
       : null}

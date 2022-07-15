@@ -1,29 +1,27 @@
 const mongoose = require('mongoose');
-const IngredientsSchema = require('./ingredients.models');
+
 
 const RecipeSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Recipes must have a name.']
+        required: [true, 'Recipes must have a name.'],
+        unique: [true, 'Recipes must have a unique name.']
     },
     image: {
         type: String,
+        required: [true, 'Recipes must have an image.']
     },
-    ingredients: [
-        { 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Ingredient' 
-        }
-    ],
+    ingredients: {
+        type: String,
+        required: [true, 'Recipes must have ingredients.']
+    },
     instructions: {
         type: String,
         required: [true, 'Recipes must have instructions.']
     },
     featured: {
-        type: Boolean,
-        unique: true,
-        default: false
-    }
+        type: Boolean
+    },
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);

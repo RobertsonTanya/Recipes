@@ -6,11 +6,11 @@ import ChickenPotPie from '../images/chickenPotPie.png';
 import styles from '../styles/home.module.css';
 
 const Home = (props) => {
-    const { featured, recipes } = props;
+    const { featuredRecipe, recipes } = props;
 
     return (
         <div>
-            <Header featured={featured} />
+            <Header featuredRecipe={featuredRecipe} />
             <div className={`background ${styles.background}`}>
                 <div className={`container ${styles.container}`}>
                     <div className={styles.left}>
@@ -37,7 +37,7 @@ const Home = (props) => {
                     <p>solutions</p>
                 </div>
             </div>
-            {featured && featured.ingredients ?
+            {featuredRecipe ?
                 <div className={styles.feature}>
                     <div className={`container ${styles.container}`}>
                         <div className={styles.titles}>
@@ -45,24 +45,18 @@ const Home = (props) => {
                                 <h2>Featured Recipe:</h2>
                             </div>
                             <div className={styles.featureRight}>
-                                <h2><Link to={`/recipes/details/${featured._id}`}>{featured.name}</Link></h2>
+                                <h2><Link to={`/recipes/details/${featuredRecipe._id}`}>{featuredRecipe.name}</Link></h2>
                             </div>
                         </div>
                         <div className={styles.body}>
                             <div className={styles.featureLeft}>
                                 <h3>Ingredients:</h3>
-                                <ul>
-                                {featured.ingredients ? featured.ingredients.map((ingredient, index) => {
-                                    return (
-                                        <li key={index}>{ingredient.quantity} {ingredient.measurement} {ingredient.name}</li>
-                                    )
-                                }) : null}
-                                </ul>
-                                <img className={styles.featureImage} src={featured.image} alt={featured.name} />
+                                <p>{featuredRecipe.ingredients}</p>
+                                <img className={styles.featureImage} src={featuredRecipe.image} alt={featuredRecipe.name} />
                             </div>
                             <div className={styles.featureRight}>
                                 <h3>Instructions:</h3>
-                                <p>{featured.instructions}</p>
+                                <p>{featuredRecipe.instructions}</p>
                             </div>
                         </div>
                     </div>
