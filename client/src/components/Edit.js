@@ -18,7 +18,6 @@ const Edit = (props) => {
     const [ image, setImage ] = useState('');
     const [ featured, setFeatured ] = useState(false);
     const [ errors, setErrors ] = useState({});
-    const [ errorFeatured, setErrorFeatured ] = useState('');
     const recipeParams = { name, image, ingredients, instructions, featured };
     
 
@@ -50,23 +49,21 @@ const Edit = (props) => {
     const updateRecipe = (e) => {
         e.preventDefault();
         setErrors({});
-        if(errorFeatured === ''){
-            axios.put(`http://localhost:8000/api/recipes/${id}`, recipeParams)
-                .then(res => {
-                    console.log(res.data);
-                    updateRecipes(res.data._id)
-                    if (!count && res.data.featured) {
-                        setFeaturedRecipe(res.data)
-                    } else if (!count && !res.data.featured) {
-                        setFeaturedRecipe({})
-                    }
-                    navigate(`/recipes`);
-                })
-                .catch(err => {
-                    console.log('error log', err.response.data.errors);
-                    setErrors(err.response.data.errors);
-                })
-        }
+        axios.put(`http://localhost:8000/api/recipes/${id}`, recipeParams)
+            .then(res => {
+                console.log(res.data);
+                updateRecipes(res.data._id)
+                if (!count && res.data.featured) {
+                    setFeaturedRecipe(res.data)
+                } else if (!count && !res.data.featured) {
+                    setFeaturedRecipe({})
+                }
+                navigate(`/recipes`);
+            })
+            .catch(err => {
+                console.log('error log', err.response.data.errors);
+                setErrors(err.response.data.errors);
+            })
     }
 
     const deleteRecipe = (recipeId) => {
@@ -116,13 +113,8 @@ const Edit = (props) => {
                     <div className={styles.lastRow}>
                         <button className="btn-delete" onClick={()=>deleteRecipe(recipe._id)}>Delete</button>
                         <p className={styles.featured}>
-                            <p>
-                                <input className={styles.featuredInput} type="checkbox" id="featured" disabled={Object.keys(featuredRecipe).length ? recipe._id !== featuredRecipe._id : false} checked={featured} onChange={e=>setFeatured(e.target.checked)} />
-                                <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
-                            </p>
-                            {errorFeatured ?
-                                <p className="error">{errorFeatured}</p>
-                            : null}
+                            <input className={styles.featuredInput} type="checkbox" id="featured" disabled={Object.keys(featuredRecipe).length ? recipe._id !== featuredRecipe._id : false} checked={featured} onChange={e=>setFeatured(e.target.checked)} />
+                            <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
                         </p>
                         <button type="submit" className="btn-primary">Submit</button>
                     </div>
