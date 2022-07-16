@@ -17,7 +17,6 @@ const Edit = (props) => {
     const [ instructions, setInstructions ] = useState('');
     const [ image, setImage ] = useState('');
     const [ featured, setFeatured ] = useState(false);
-    const [ updateState, setUpdateState ] = useState('');
     const [ errors, setErrors ] = useState({});
     const [ errorFeatured, setErrorFeatured ] = useState('');
     const recipeParams = { name, image, ingredients, instructions, featured };
@@ -118,7 +117,7 @@ const Edit = (props) => {
                         <button className="btn-delete" onClick={()=>deleteRecipe(recipe._id)}>Delete</button>
                         <p className={styles.featured}>
                             <p>
-                                <input className={styles.featuredInput} type="checkbox" id="featured" disabled={Object.keys(featuredRecipe).length ? recipe._id !== featuredRecipe._id : false} checked={featured} onChange={e=>{setFeatured(e.target.checked); setUpdateState();}} />
+                                <input className={styles.featuredInput} type="checkbox" id="featured" disabled={Object.keys(featuredRecipe).length ? recipe._id !== featuredRecipe._id : false} checked={featured} onChange={e=>setFeatured(e.target.checked)} />
                                 <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
                             </p>
                             {errorFeatured ?
