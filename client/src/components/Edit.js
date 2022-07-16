@@ -7,24 +7,24 @@ import Header from "./Header";
 import styles from '../styles/createNew.module.css';
 
 const Edit = (props) => {
-    const { featuredRecipe, recipes, setRecipes } = props;
+    const { featuredRecipe, setFeaturedRecipe, count, recipes, setRecipes } = props;
     const { id } = useParams();
     const navigate = useNavigate();
 
     const [ recipe, setRecipe ] = useState({});
-    const [ name, setName ]  = useState(recipe.name);
-    const [ ingredients, setIngredients ] = useState(recipe.ingredients);
-    const [ instructions, setInstructions ] = useState(recipe.instructions);
-    const [ image, setImage ] = useState(recipe.image);
-    const [ featured, setFeatured ] = useState(recipe.featured);
+    const [ name, setName ]  = useState('');
+    const [ ingredients, setIngredients ] = useState('');
+    const [ instructions, setInstructions ] = useState('');
+    const [ image, setImage ] = useState('');
+    const [ featured, setFeatured ] = useState(false);
     const [ errors, setErrors ] = useState({});
     const recipeParams = { name, image, ingredients, instructions, featured };
     
 
     useEffect(()=> {
+        console.log('use effect is running')
         axios.get(`http://localhost:8000/api/recipes/${id}`)
             .then(res => {
-                console.log(res.data);
                 setRecipe(res.data);
                 setName(res.data.name);
                 setImage(res.data.image);
@@ -35,13 +35,29 @@ const Edit = (props) => {
             .catch(err => { console.log(err)})
     }, [])
     
+    const updateRecipes = (id) => {
+        const updatedRecipes = recipes.map(recipe => {
+            if (recipe._id === id) {
+                return {...recipe, featured}
+            }
+            return recipe
+        })
+        setRecipes(updatedRecipes)
+    }
+
+
     const updateRecipe = (e) => {
         e.preventDefault();
-
         setErrors({});
         axios.put(`http://localhost:8000/api/recipes/${id}`, recipeParams)
             .then(res => {
                 console.log(res.data);
+                updateRecipes(res.data._id)
+                if (!count && res.data.featured) {
+                    setFeaturedRecipe(res.data);
+                } else if (!count && !res.data.featured) {
+                    setFeaturedRecipe({});
+                }
                 navigate(`/recipes`);
             })
             .catch(err => {
@@ -60,7 +76,7 @@ const Edit = (props) => {
                 console.log(err)
             })
     }
-
+    
     return (
         <div>
             <Header featuredRecipe={featuredRecipe} />
@@ -97,11 +113,8 @@ const Edit = (props) => {
                     <div className={styles.lastRow}>
                         <button className="btn-delete" onClick={()=>deleteRecipe(recipe._id)}>Delete</button>
                         <p className={styles.featured}>
-                            <input className={styles.featuredInput} type="checkbox" id="featured"  checked={featured} onChange={e => {setFeatured(e.target.checked);}} />
+                            <input className={styles.featuredInput} type="checkbox" id="featured" disabled={Object.keys(featuredRecipe).length ? recipe._id !== featuredRecipe._id : false} checked={featured} onChange={e=>setFeatured(e.target.checked)} />
                             <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
-                            {errors && errors.featured && errors.featured.message ?
-                                <p className="error">{errors.featured.message}</p>
-                            : null}
                         </p>
                         <button type="submit" className="btn-primary">Submit</button>
                     </div>

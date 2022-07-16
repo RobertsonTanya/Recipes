@@ -37,5 +37,6 @@
 .error {
     color: red;
     font-weight: 500;
+    margin-right: 20px;
     text-shadow: -1px 1px 1px #333;
 }

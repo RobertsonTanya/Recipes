@@ -10,6 +10,7 @@ const Details = (props) => {
 
     const { id } = useParams();
 
+
     return (
         <div>
             <Header featuredRecipe={featuredRecipe} />

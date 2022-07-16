@@ -7,7 +7,7 @@ import Header from "./Header";
 import styles from '../styles/createNew.module.css';
 
 const CreateNew = (props) => {
-    const { featuredRecipe, recipes, setRecipes } = props;
+    const { featuredRecipe, count, setCount, recipes, setRecipes } = props;
     const navigate = useNavigate();
 
     const [ name, setName ]  = useState('');
@@ -16,6 +16,7 @@ const CreateNew = (props) => {
     const [ image, setImage ] = useState('');
     const [ featured, setFeatured ] = useState(false);
     const [ errors, setErrors ] = useState({});
+    const [ errorFeatured, setErrorFeatured ] = useState('');
     const recipeParams = { name, image, ingredients, instructions, featured };
     
     
@@ -23,16 +24,28 @@ const CreateNew = (props) => {
         e.preventDefault();
 
         setErrors({});
-        axios.post('http://localhost:8000/api/recipes', recipeParams)
-            .then(res => {
-                console.log(res.data);
-                setRecipes([...recipes, res.data]);
-                navigate('/recipes');
-            })
-            .catch(err => {
-                console.log('error log', err.response.data.errors);
-                setErrors(err.response.data.errors);
-            })
+        if(!errorFeatured){
+            console.log(errorFeatured, featured);
+            axios.post('http://localhost:8000/api/recipes', recipeParams)
+                .then(res => {
+                    console.log(res.data);
+                    setRecipes([...recipes, res.data]);
+                    navigate('/recipes');
+                })
+                .catch(err => {
+                    console.log('error log', err.response.data.errors);
+                    setErrors(err.response.data.errors);
+                })
+        }
+    }
+
+    const checkForDups = (value) => {
+        setErrorFeatured('');
+        if(count === 1 && value === true){
+            setErrorFeatured('There can only be one featured recipe.');
+        } else {
+            setErrorFeatured('');
+        }
     }
 
     return (
@@ -70,10 +83,12 @@ const CreateNew = (props) => {
                     : null}
                     <div className={styles.lastRow}>
                         <p className={styles.featured}>
-                            <input className={styles.featuredInput} type="checkbox" id="featured" defaultChecked={false} value={featured} onChange={e => {setFeatured(e.target.checked);}} />
-                            <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
-                            {errors && errors.featured && errors.featured.message ?
-                                <p className="error">{errors.featured.message}</p>
+                            <p>
+                                <input className={styles.featuredInput} type="checkbox" id="featured" defaultChecked={false} value={featured} onChange={e => {setFeatured(e.target.checked); checkForDups(e.target.checked);}} />
+                                <label className={styles.featuredLabel} htmlFor="featured">Featured</label>
+                            </p>
+                            {errorFeatured ?
+                                <p className="error">{errorFeatured}</p>
                             : null}
                         </p>
                         <button type="submit" className="btn-primary">Submit</button>

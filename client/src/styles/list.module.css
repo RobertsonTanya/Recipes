@@ -29,3 +29,9 @@
 .listings button a {
     font-size: 13.333px;
 }
+
+@media only screen and (max-width: 425px){
+    .listings span {
+        font-size: 12px;
+    }
+}
