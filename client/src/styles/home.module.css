@@ -129,7 +129,7 @@ h2 a {
     }
     
     .cooking {
-        background-position: top left;
+        background-position: center;
         background-size: 100%;
     }
 }
