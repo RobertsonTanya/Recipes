@@ -13,9 +13,12 @@ import './styles/App.css';
 
 function App() {
   const [ featured, setFeatured ] = useState({});
+  const [ count, setCount ] = useState(0);
   const [ recipes, setRecipes ] = useState([{}]);
+  const [urlChanged, setUrlChanged] = useState(false);
 
   useEffect(() => {
+      setCount(0);
       axios.get(`http://localhost:8000/api/recipes`)
           .then(res => {
             console.log(res.data);
@@ -28,6 +31,7 @@ function App() {
                           .then(resp => {
                               console.log(resp.data);
                               setFeatured(resp.data);
+                              setCount(1);
                           })
                           .catch(err => { console.log(err)})
                   }
@@ -44,9 +48,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home featuredRecipe={featured} recipes={recipes}  />} default/>
-            <Route path="/recipes" element={<List featuredRecipe={featured} recipes={recipes}  />} />
-            <Route path="/recipes/edit/:id" element={<Edit featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes}  />} />
-            <Route path="/new-recipe" element={<CreateNew featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} />} />
+            <Route path="/recipes" element={<List featuredRecipe={featured} recipes={recipes} setUrlChanged={setUrlChanged} />} />
+          <Route path="/recipes/edit/:id" element={<Edit count={count} setCount={setCount} setFeaturedRecipe={setFeatured} featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} urlChanged={urlChanged} />} />
+            <Route path="/new-recipe" element={<CreateNew count={count} setCount={setCount} featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} />} />
             <Route path="/recipes/details/:id" element={<Details featuredRecipe={featured} recipes={recipes}  />} />
           </Routes>
         </BrowserRouter>

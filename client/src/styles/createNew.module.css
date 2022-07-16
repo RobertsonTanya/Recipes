@@ -36,6 +36,11 @@ textarea {
 .featured {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+}
+.featured p {
+    margin: 0 auto;
 }
 
 .lastRow {
