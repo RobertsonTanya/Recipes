@@ -5,13 +5,13 @@ import Header from "./Header";
 import styles from '../styles/list.module.css';
 
 const List = (props) => {
-    const { featured, recipes, setUrlChanged } = props;
+    const { featuredRecipe, recipes, setUrlChanged } = props;
 
 
     return (
         <div>
             <div className={`background ${styles.background}`}>
-                <Header featured={featured} />
+                <Header featuredRecipe={featuredRecipe} />
                 <div className={`container ${styles.container}`}>
                     <h1>List of our Recipes</h1>
                     <ul className={styles.listings}>

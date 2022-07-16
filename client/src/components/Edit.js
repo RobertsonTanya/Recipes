@@ -7,7 +7,7 @@ import Header from "./Header";
 import styles from '../styles/createNew.module.css';
 
 const Edit = (props) => {
-    const { featuredRecipe, setFeaturedRecipe, count, setCount, recipes, setRecipes, urlChanged } = props;
+    const { featuredRecipe, setFeaturedRecipe, count, recipes, setRecipes } = props;
     const { id } = useParams();
     const navigate = useNavigate();
 
