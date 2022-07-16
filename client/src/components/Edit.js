@@ -104,7 +104,7 @@ const Edit = (props) => {
                         <p className="error">{errors.instructions.message}</p>
                     : null}
                     <p>
-                        <label htmlFor="image">Image</label>
+                        <label htmlFor="image">Image Url</label>
                         <input type="text" id="image" value={image} onChange={e => {setImage(e.target.value);}} />
                     </p>
                     {errors && errors.image && errors.image.message ?
