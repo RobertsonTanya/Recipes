@@ -54,9 +54,9 @@ const Edit = (props) => {
                 console.log(res.data);
                 updateRecipes(res.data._id)
                 if (!count && res.data.featured) {
-                    setFeaturedRecipe(res.data)
+                    setFeaturedRecipe(res.data);
                 } else if (!count && !res.data.featured) {
-                    setFeaturedRecipe({})
+                    setFeaturedRecipe({});
                 }
                 navigate(`/recipes`);
             })
