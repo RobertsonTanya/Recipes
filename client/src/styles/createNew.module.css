@@ -1,6 +1,7 @@
 .background {
     background-image: url('../images/ListBackground.jpg');
     background-position: top center;
+    min-height: 100vh;
 }
 
 .form.container {
