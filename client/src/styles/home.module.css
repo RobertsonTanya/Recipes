@@ -68,15 +68,21 @@ h2 a {
     max-width: 185px;
 }
 
+.featureImage:hover {
+    transition: transform 2s ease-in-out;
+    transform: translateX(100px) scale(2);
+}
+
 .cooking {
-    align-items: center;
-    background-image: url('../images/AmorphousShape.png');
+    align-items: flex-start;
+    background-image: url('../images/Tigers.png');
     background-position: center left;
     background-repeat: no-repeat;
     background-size: 50% 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     min-height: 350px;
+    padding-top: 75px;
 }
 
 .cooking .container {
@@ -131,5 +137,6 @@ h2 a {
     .cooking {
         background-position: center;
         background-size: 100%;
+        padding-top:100px;
     }
 }

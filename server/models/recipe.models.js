@@ -5,6 +5,7 @@ const RecipeSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Recipes must have a name.'],
+        minLength: [10, 'Recipes must have a 10 character name.'],
         unique: [true, 'Recipes must have a unique name.']
     },
     image: {
@@ -17,7 +18,8 @@ const RecipeSchema = new mongoose.Schema({
     },
     instructions: {
         type: String,
-        required: [true, 'Recipes must have instructions.']
+        required: [true, 'Recipes must have instructions.'],
+        minLength: [40, 'Recipes must have a 40 character instructions.']
     },
     featured: {
         type: Boolean

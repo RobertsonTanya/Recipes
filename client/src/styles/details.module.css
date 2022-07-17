@@ -15,6 +15,11 @@ h1 {
     width: 100%;
 }
 
+.detailsImage:hover {
+    transition: transform 2s ease-in-out;
+    transform: translateX(100px) scale(2);
+}
+
 .details {
     display: flex;
     justify-content: space-between;
@@ -51,5 +56,14 @@ h1 {
     .detailsRight {
         margin-left: 0;
         width: 100%;
+    }
+    .twoColumns {
+        columns: 2;
+        max-width: 400px;
+    }
+}
+@media only screen and (max-width: 400px){
+    .twoColumns {
+        columns: 1;
     }
 }
