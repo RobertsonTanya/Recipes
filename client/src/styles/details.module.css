@@ -15,6 +15,11 @@ h1 {
     width: 100%;
 }
 
+.detailsImage:hover {
+    transition: transform 2s ease-in-out;
+    transform: translateX(100px) scale(2);
+}
+
 .details {
     display: flex;
     justify-content: space-between;

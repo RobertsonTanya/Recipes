@@ -55,6 +55,11 @@ textarea {
     max-width: 185px;
 }
 
+.image:hover {
+    transition: transform 2s ease-in-out;
+    transform: translatey(-100px) scale(2);
+}
+
 @media only screen and (max-width: 520px){
     input, textarea {
         width: 98%;
