@@ -42,6 +42,7 @@ h1 {
 @media only screen and (max-width: 768px){
     .background {
         background-image: url('../images/ListBackground.jpg');
+        min-height: 100vh;
     }
     h1 {
         margin-bottom: 0;
