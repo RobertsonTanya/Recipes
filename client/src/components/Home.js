@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import Header from './Header';
-import ChickenPotPie from '../images/chickenPotPie.png';
+import ZuppaToscana from '../images/ZuppaToscana.png';
 
 import styles from '../styles/home.module.css';
 
@@ -19,7 +19,7 @@ const Home = (props) => {
                         <button className='btn-primary'><Link to='/recipes'>Get Started</Link></button>
                     </div>
                     <div className={styles.right}>
-                        <img src={ChickenPotPie} alt="Chicken Pot Pie" />
+                        <img src={ZuppaToscana} alt="Zuppa Toscana" />
                     </div>
                 </div>
             </div>
