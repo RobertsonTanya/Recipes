@@ -49,7 +49,7 @@ function App() {
             <Route path="/" element={<Home featuredRecipe={featured} recipes={recipes}  />} default/>
             <Route path="/recipes" element={<List featuredRecipe={featured} recipes={recipes} />} />
           <Route path="/recipes/edit/:id" element={<Edit count={count} setFeaturedRecipe={setFeatured} featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} />} />
-            <Route path="/new-recipe" element={<CreateNew count={count} setCount={setCount} featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} />} />
+            <Route path="/new-recipe" element={<CreateNew count={count} setFeaturedRecipe={setFeatured} featuredRecipe={featured} recipes={recipes} setRecipes={setRecipes} />} />
             <Route path="/recipes/details/:id" element={<Details featuredRecipe={featured} recipes={recipes}  />} />
           </Routes>
         </BrowserRouter>

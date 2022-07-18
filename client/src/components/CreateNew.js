@@ -7,7 +7,7 @@ import Header from "./Header";
 import styles from '../styles/createNew.module.css';
 
 const CreateNew = (props) => {
-    const { featuredRecipe, count, setCount, recipes, setRecipes } = props;
+    const { featuredRecipe, setFeaturedRecipe, count, recipes, setRecipes } = props;
     const navigate = useNavigate();
 
     const [ name, setName ]  = useState('');
@@ -30,6 +30,9 @@ const CreateNew = (props) => {
                 .then(res => {
                     console.log(res.data);
                     setRecipes([...recipes, res.data]);
+                    if (!count && res.data.featured) {
+                        setFeaturedRecipe(res.data);
+                    }
                     navigate('/recipes');
                 })
                 .catch(err => {
