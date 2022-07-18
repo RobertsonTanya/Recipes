@@ -71,6 +71,7 @@ const Edit = (props) => {
             .then(res => {
                 console.log(res);
                 setRecipes(recipes.filter(recipe => recipe._id != recipeId));
+                navigate(`/recipes`);
             })
             .catch(err => {
                 console.log(err)
